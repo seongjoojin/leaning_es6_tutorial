@@ -65,3 +65,26 @@ let 사용시
      // 실행결과 : tv phone
      
 let 사용시 블록 스코프와 전역 스코프로 분리됨
+
+## Temporal Dead Zone
+
+let, const는 TDZ에 의해 제약
+
+    let product = 'phone';
+    if(true){
+        // 변수 product에 대한 tdz가 시작
+        console.log(product);
+        var product = 'tv';     // 선언문은 변수 product에 대한 tdz를 종료
+    };
+    console.log(product);
+    
+let은 var와 달리 변수가 초기화 되기 전에 접근하면 ReferenceError(참조에러)가 발생함<br>
+var는 선언과 동시에 초기화가 되지만 let은 먼저 변수가 스코프에 선언은 되지만 초기화가 한번에 이루어지지 않고 선언문에 도달해야 이루어지기 때문임.
+
+이와 같이 let으로 선언된 변수가 초기화 되기 전에 엑세스 할수 없는 구역을 Temporal Dead Zone 줄여서 TDZ라고 함.
+
+## 정리하기
+
+- let은 변수의 유효범위가 블록스코프
+- 원시형은 변수는 let, 상수는 const
+- 참조형은 const
