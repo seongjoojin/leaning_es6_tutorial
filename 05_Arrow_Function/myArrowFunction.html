@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var name = "ES5";
+
+    function Lang(){
+        this.name = "ES6"
+
+        setTimeout(function(){
+            console.log("Global name is " + this.name);
+        }, 100);
+        setTimeout(()=>{
+            console.log("My name is " + this.name);
+        }, 100);
+    }
+
+    var lang = new Lang();
+</script>
+</body>
+</html>
