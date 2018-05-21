@@ -85,4 +85,36 @@ for-in , Object.keys 메소드는 심볼을 출력하지 않음.
 
 Object.getOwnPropertySymbols 메소드를 통해 객체 안에 존재하는 심볼 키 목록을 조회할 수 있음.
 
-Symbol.iterator 속성을 가지고 있으면 iterable 객체 
+Symbol.iterator 속성을 가지고 있으면 iterable 객체
+
+# for of의 내부동작
+
+<pre>이터러블 객체는 [Symbol.iterator]() 메서드를 제공
+
+[Symbol.iterator]()메서드 호출로 시작. iterator 객체가 리턴.</pre>
+
+
+이터레이터 객체는 앞서 살펴본 Symbol.iterator 메서드를 제공함.
+
+# iterator
+
+next()메서드와 value, done 을 속성으로 가짐.
+
+    const set = new Set([10,20]);
+    
+    const myIter = set.entries();
+    console.log(myIter.next());
+    console.log(myIter.next());
+    console.log(myIter.next());
+    
+    // 실행결과
+    
+    {value: [10, 10], done: false}
+    {value: [20, 20], done: false}
+    {value: undefined, done: true}
+    
+# 정리하기
+
+for-of 구문은 내부적으로 메서드를 반복적으로 호출.
+
+for-of 구문은 모든 iterable 객체를 대상으로 사용.
