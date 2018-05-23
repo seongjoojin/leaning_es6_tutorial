@@ -39,3 +39,37 @@ Map 예제2
 set메서드를 연속해서 데이터를 할당 할 수 도 있음
 
 delete메서드에 key를 넣어 삭제할 수 있음.
+
+# MapIterator 활용
+
+for-of, entries(), next(), keys(), values() 사용
+
+    const myMap = new Map();
+    const myArray = [["Plugin","Update"],["Refactor",6], ["Code",5]];
+    
+    for(let i of myArray){
+        myMap.set(...i);
+    }
+    const myKeys = myMap.keys(),
+        myValue = myMap.values(),
+        myIter = myMap.entries();
+    console.log(myKeys);
+    console.log(myValue);
+    console.log(myIter);
+    
+    console.log(myIter.next());
+    console.log(myIter.next());
+    console.log(myIter.next());
+    console.log(myIter.next());
+    
+    // 실행결과
+    MapIterator { 'Plugin', 'Refactor', 'Code' }
+    MapIterator { 'Update', 6, 5 }
+    MapIterator { [ 'Plugin', 'Update' ], [ 'Update', 6 ], [ 'Code', 5 ] }
+    { value: ["Plugin", "Update"], done: false }
+    { value: ["Refactor", 6], done: false }
+    { value: ["Code",5], done: false }
+    { value: undefined, done: true }
+
+keys 메서드와 values 메서드는 key를 값으로 가지는 MapIterator, value를 값으로 가지는 MapIterator<br>
+entries 메서드는 key, value 를 갖는 MapIterator 를 반환합니다. 
