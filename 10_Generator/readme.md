@@ -83,3 +83,48 @@ yield* iterable 을 사용하면 해당되는 iterable의 값들을 순차적으
     3
     
 제너레이터 함수가 값을 쓰고, 제네레이터 객체의 이터레이터 인터페이스로 값을 읽는 것 뿐만 아니라 제너레이터 객체에 값을 쓰고 제너레이터 함수가 값을 읽어 갈 수도 있음
+
+# return(value)
+
+매개변수로 온 값을 value로 반환하고, Generator를 종료
+
+    function* gen(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+    
+    let g = gen();
+    
+    console.log(g.next());
+    console.log(g.return("foo"));
+    console.log(g.next());
+    
+    // 실행결과
+    { value: 1, done: false }
+    { value: 'foo', done: true }
+    { value: undefined, done: true }
+    
+# throw(exception)
+
+인자로 받은 에러 발생시키고, Generator를 종료
+
+    function* generator(){
+        try{
+            yield 'foo';
+        }
+        catch(err){
+            console.log(err.message);
+        }
+    }
+    
+    let iterator = generator();
+    
+    let foo = iterator.next();
+    console.log(foo.value);
+    
+    let nextThing =  iterator.throw(new Error('bar'));
+    
+    // 실행결과
+    foo
+    bar
