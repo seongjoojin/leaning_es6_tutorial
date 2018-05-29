@@ -33,3 +33,53 @@ yield 구문은 제너레이터의 실행을 멈췄다가 다음에 다시 이�
     { value:  "다음에 또 만나요", done: false }
     { value:  undefined, done: true }
     
+# yield*
+
+yield* iterable 을 사용하면 해당되는 iterable의 값들을 순차적으로 반환
+
+    function* myGenFn(){
+        yield* [1,2,3,4,5,6,7];
+        yield 8;
+        yield 9;
+    }
+    
+    let iterator = myGenFn();
+    
+    for(const n of iterator){
+        console.log(n);
+    }
+    
+    // 실행결과
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    
+# next(value)
+
+다음 값을 얻는 역할의 메서드.
+
+매개변수는 바로 이전의 yield(expression)의 반환값으로 사용
+
+    function* foo(){
+        console.log(yield);
+        console.log(yield);
+        console.log(yield);
+    }
+    let iter = foo();
+    iter.next();
+    iter.next(1);
+    iter.next(2);
+    iter.next(3);
+    
+    // 실행결과
+    1
+    2
+    3
+    
+제너레이터 함수가 값을 쓰고, 제네레이터 객체의 이터레이터 인터페이스로 값을 읽는 것 뿐만 아니라 제너레이터 객체에 값을 쓰고 제너레이터 함수가 값을 읽어 갈 수도 있음
