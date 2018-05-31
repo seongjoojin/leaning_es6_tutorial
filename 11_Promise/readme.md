@@ -79,3 +79,56 @@ catch() - 거절 핸들러만 할당. 프로미스가 거부된 경우 무엇을
     // 실행결과
     
     then error :  Error: Error in then()
+    
+# all
+
+all() - 모든 프로미스를 성공하면 resolve, 아닌 경우 reject
+
+    const pro1 = (param)=>{
+        return new Promise((resolve, reject)=>{
+            param ? resolve("여행1") :  reject("거부")
+        });
+    };
+    
+    const pro2 = (param)=>{
+        return new Promise((resolve, reject)=>{
+            param ? resolve("여행2") : reject("거부2");
+        });
+    };
+    
+    Promise.all([pro1(true),pro2(true)]).then((value)=>{
+        console.log("all프로미스 값 " + value)
+    });
+    
+    // 실행결과
+    
+    all프로미스 값 여행1,여행2
+    
+예제2
+
+    const pro1 = new Promise(function(resolve,reject){
+        resolve(10);
+    });
+    const pro2 = new Promise(function(resolve,reject){
+        reject(20);
+    });
+    const pro3 = new Promise(function(resolve,reject){
+        resolve(30);
+    });
+    const pro4 = Promise.all([pro1,pro2,pro3]);
+    pro4.catch(function(value){
+      console.log(Array.isArray(value));
+      console.log(value);  
+    });
+    
+    // 실행결과
+    false
+    20
+    
+# 정리하기
+
+Pending(대기), Fulfilled(이행), Rejected(거부)
+
+then() - 메서드 수행 및 거절 핸들러 할당
+
+catch() - 메서드를 사용하면 거절 핸들러만 할당
