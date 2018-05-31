@@ -42,3 +42,40 @@ then 예제 2
 
 then 메서드를 사용하면 수행 뿐만아니라 거절 핸들러를 할당할 수 있음.
 
+# chaining & catch
+
+chaining - 여러개의 프로미스를 연결.
+
+    let promise = new Promise(function(resolve,reject){
+        resolve(1);
+    })
+    
+    promise.then(function(value){
+        return value + 9;
+    })
+    .then(function(value){
+        return value * 2;
+    })
+    .then(function(value){
+        return value / 4;
+    })
+    .then(console.log);
+    
+    // 실행결과
+    5
+    
+catch() - 거절 핸들러만 할당. 프로미스가 거부된 경우 무엇을 할지 정의.
+
+    const promise = new Promise(function(resolve,reject){
+        resolve();
+    })
+    
+    promise.then(function(){
+        throw new Error("Error in then()");
+    }).catch(function(err){
+       console.log("then error : ", err);
+    });
+    
+    // 실행결과
+    
+    then error :  Error: Error in then()
