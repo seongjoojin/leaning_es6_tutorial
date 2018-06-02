@@ -71,3 +71,11 @@
         yield register(user);
         yield display(user);
     };
+    
+# 실전예제
+
+next() -> yield -> then()
+
+# 정리하기
+
+Generator와 Promise를 결합할 때 비동기 작업에 더욱 유용한 도구
